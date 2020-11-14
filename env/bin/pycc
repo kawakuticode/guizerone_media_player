@@ -1,0 +1,3 @@
+#!/home/russelius/Documents/projects/guizeroone/env/bin/python
+from numba.pycc import main
+main()
