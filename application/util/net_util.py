@@ -10,22 +10,24 @@ import io
 
 
 # local_url_api = " http://127.0.0.1:5000/api/v1/radios"
-url_api = "https://angolawebapi.herokuapp.com/api/v1/radios"
+url_api = "https://angolawebapi.herokuapp.com/api/radios"
 
 
 class Network_util():
 
     @staticmethod
     def get_stations_from_api():
+        json_response = ""
         try:
-            response = requests.get(url_api)
-            response.raise_for_status()
+            json_response = requests.get(url_api)
+            #response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError:
             print("server offline....")
         except requests.exceptions.ConnectionError:
             print("server offline....")
-
+        finally:
+            return  json_response
     @staticmethod
     def get_station_names(json_response):
         radio_encode = demjson.encode(json_response)
